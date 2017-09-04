@@ -233,7 +233,7 @@ YTK.hangman = (function() {
   function showSection(divID) {
     var allClasses = document.getElementById(divID).className;
 
-    document.getElementById(divID).className = allClasses.replace(' hidden');
+    document.getElementById(divID).classList.remove("hidden");
   }
 
   function pickChar(e, alphabetID) {
@@ -305,15 +305,13 @@ YTK.hangman = (function() {
   }
 
   function playMusic() {
-    $('#btn-play-music').addClass('hidden');
-    $('#btn-stop-music').removeClass('hidden');
+    hideSection("btn-play-music");
+    showSection("btn-stop-music");
     bkgMusic.play();
   }
   function stopMusic() {
-    $('#btn-stop-music').addClass('hidden');
-    $('#btn-play-music').removeClass('hidden');
-    // hideSection("btn-stop-music");
-    // showSection("btn-play-music");
+    hideSection("btn-stop-music");
+    showSection("btn-play-music");
     bkgMusic.pause();
   }
 
