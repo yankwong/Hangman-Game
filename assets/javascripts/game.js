@@ -29,7 +29,7 @@ YTK.hangman = (function() {
         "start": [
           "$ is power my friend",
           "Can always use more $",
-          "$ is no jQuery here"
+          "$ is not jQuery here"
         ],
         "correct": [
           "Power of the VIP",
@@ -272,8 +272,14 @@ YTK.hangman = (function() {
     updateSpeech(charID, 'start');
 
     showSection('gameSection');
-    
+
+    hideSection('header-intro');
+
+    hideSection('footer');
+
     hideSection('landingSection');
+
+    showSection('home-link');
 
     console.log('localstorage: ', localStorage);
   }
@@ -282,10 +288,15 @@ YTK.hangman = (function() {
     window.location.href = "index.html";
   }
 
+  function toggleMusic() {
+    return;
+  }
+
   return {
     initGame: initGame,
     pickChar: pickChar,
-    playAgain: playAgain
+    playAgain: playAgain,
+    toggleMusic: toggleMusic
   }
 
 })();

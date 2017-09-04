@@ -5,10 +5,22 @@
 		<link rel="icon" href="assets/images/favicon.jpg" type="image/x-icon" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	</head>
 
 	<body>
+
+		<header class="header">
+			<div class="container-fluid book-keeping">
+	      <span id="header-intro" class="intro">Pick a character</span>
+	      <a id="home-link" class=" hidden" href="index.html">HOME</a>
+	      <div id="header-ui" class="header-ui">
+		      <button class="btn btn-outline-success" onclick="YTK.hangman.toggleMusic();"><i class="fa fa-volume-off" aria-hidden="true"></i></button>
+	      </div>
+	    </div>
+		</header>
+
 		<div id="landingSection" class="container landing-container">
 			<div id="character-select" class="row">
 				<div class="col-md-6 col-lg-5 offset-lg-1">
@@ -20,7 +32,7 @@
 							</div>
 							<div class="col-9">
 								<div class="char-data">
-									<h4 class="card-title">Larry</h4>
+									<h1 class="card-title">Larry</h1>
 									<p class="card-text desc">The rich friend with a gambling problem.</p>
 								</div>
 							</div>
@@ -71,7 +83,7 @@
 									</div>
 									<div class="col-9">
 										<div class="char-data">
-											<h4 class="card-title">Larry</h4>
+											<h1 class="card-title">Beth</h1>
 											<p class="card-text desc">The nerdy cat lady</p>
 										</div>
 									</div>
@@ -191,6 +203,12 @@
 			<i class="fa fa-refresh fa-spin" aria-hidden="true">
 		</div> -->
 
+		<footer id="footer" class="footer">
+      <div class="container">
+        <span class="text-muted">© Copyright 2017 Yan Ting Kwong</span>
+      </div>
+    </footer>
+
 		<!-- Modal -->
 		<div class="modal fade" id="endGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
@@ -209,7 +227,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" onclick="YTK.hangman.playAgain();"class="btn btn-primary">Play Again</button>
+		        <button type="button" onclick="YTK.hangman.playAgain();" class="btn btn-primary">Play Again</button>
 		      </div>
 		    </div>
 		  </div>
