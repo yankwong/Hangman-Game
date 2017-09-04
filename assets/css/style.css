@@ -1,0 +1,131 @@
+.hidden {
+  display: none!important;
+}
+
+#loader-overlay {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 5001;
+}
+#loader-overlay.active {
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: space-around; /* Safari 6.1+ */
+}
+
+#loader-overlay .fa{
+  font-size: 55px;
+}
+
+
+.character-profile {
+    width: 300px;
+    max-width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    background-repeat: no-repeat;    
+}
+
+.lar-img {
+  background-image: url(../images/larry.jpg);
+}
+.beth-img {
+  background-image: url(../images/beth.jpg); 
+}
+
+.lar-default {
+	background-position: -304px -180px;
+}
+.beth-default {
+    background-position: -237px -182px;
+}
+
+span.badge .fa {
+	font-size: 20px;
+}
+.skill-brief {
+	font-weight: bold;
+}
+.start-game-btn {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.game-container {
+  padding-top: 10px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-image: url(../images/beth-mobile.jpg);
+  background-position: -112px -99px;
+}
+
+/*http://leaverou.github.io/bubbly/*/
+.speech-bubble {
+  position: relative;
+  background: #fdf7ff;
+  border-radius: .4em;
+  margin-left: 10px;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #fdf7ff;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
+.heart-bar {
+  color: red;
+}
+.hangman-main {
+  min-height: 250px;
+  margin: 10px auto;
+  border: 1px solid red;
+}
+.keyboard .col-3 {
+  padding-left:10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+.keyboard .btn-info{
+  width: 100%;
+}
+.skill {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.skill .fa {
+  font-size: 30px;
+}
+.skill .info {
+  margin-top: 5px;
+  display: block;
+  font-size: 12px;
+}
+.skill .btn {
+  width: 100%;
+}
+.lar {
+  display: none;
+}

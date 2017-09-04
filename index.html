@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Let's play Hangman!</title>
+		<link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
+
+	<body>
+
+		<div class="container landing-container hidden">
+			<div id="character-select" class="row">
+				<div class="col-md-4 offset-md-2">
+					<div class="card character">
+						<div class="character-profile lar-img lar-default"></div>
+					  <div class="card-block">
+					    <h4 class="card-title">Larry</h4>
+					    <p class="card-text">The rich friend with a gambling problem.</p>
+					    
+					    <div class="skills">
+					    	<div class="row skill-brief alert-info">
+					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-usd" aria-hidden="true"></i></div>
+
+					    		<div class="col-7 skill-name">Pay2Win</div>
+					    	</div>
+					    	<div class="row">
+					    		<div class="col-sm-12 skill-explain hidden-sm-down">Gain one extra turn</div>
+				    		</div>
+					    </div>
+					    <div class="skills">
+					    	<div class="row skill-brief alert-info">
+					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-fire" aria-hidden="true"></i></div>
+					    		
+					    		<div class="col-7 skill-name">All or Nothing</div>
+					    	</div>
+					    	<div class="row">
+					    		<div class="col-sm-12 skill-explain hidden-sm-down">30% chance to win the game instantly</div>
+				    		</div>
+					    </div>
+					    <div class="skills">
+					    	<div class="row skill-brief alert-warning">
+					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
+					    		
+					    		<div class="col-7 skill-name">Special Treatment</div>
+					    	</div>
+					    	<div class="row">
+					    		<div class="col-sm-12 skill-explain hidden-sm-down">Always get short words</div>
+				    		</div>
+					    </div>
+						    
+					    <a href="#" id="start-lar" onclick="YTK.hangman.initGame(0)" class="start-game-btn btn btn-primary">Start Game</a>
+					  </div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card character">
+						<div class="character-profile beth-img beth-default"></div>
+							<div class="card-block">
+								<h4 class="card-title">Beth</h4>
+								<p class="card-text">The office nerdy cat lady.</p>
+								<div class="skills">
+						    	<div class="row skill-brief alert-info">
+						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-bath" aria-hidden="true"></i></div>
+
+						    		<div class="col-7 skill-name">Shower Thought</div>
+						    	</div>
+						    	<div class="row">
+						    		<div class="col-sm-12 skill-explain hidden-sm-down">Fill in 1 alphabet</div>
+					    		</div>
+						    </div>
+								<div class="skills">
+						    	<div class="row skill-brief alert-info">
+						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></div>
+
+						    		<div class="col-7 skill-name">Nerd Sense</div>
+						    	</div>
+						    	<div class="row">
+						    		<div class="col-sm-12 skill-explain hidden-sm-down">Remove 1 unused alphabet</div>
+					    		</div>
+						    </div>
+						    <div class="skills">
+						    	<div class="row skill-brief alert-warning">
+						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+
+						    		<div class="col-7 skill-name">Book Smart</div>
+						    	</div>
+						    	<div class="row">
+						    		<div class="col-sm-12 skill-explain hidden-sm-down">Get hints</div>
+					    		</div>
+						    </div>
+								<a href="#" onclick="YTK.hangman.initGame(1)" class="start-game-btn btn btn-primary">Start Game</a>
+							</div>
+						</div>
+				</div>
+			</div>	
+		</div>
+
+		<div class="container game-container">
+			<div class="row">
+				<div class="col-3"><div class="avatar"></div></div>
+				<div class="col-9"><div class="speech-bubble">Ha! I'm too good</div></div>
+				<div class="col-12 heart-bar">
+					<i class="fa fa-heart heart-1" aria-hidden="true"></i>
+					<i class="fa fa-heart heart-2" aria-hidden="true"></i>
+					<i class="fa fa-heart heart-3" aria-hidden="true"></i>
+					<i class="fa fa-heart heart-4" aria-hidden="true"></i>
+					<i class="fa fa-heart heart-5" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 hangman-main"></div>
+			</div>
+			<div class="row keyboard">
+				<div class="col-3"><button type="button" class="btn btn-info">A</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">B</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">C</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">D</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">E</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">F</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">G</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">H</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">I</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">J</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">K</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">L</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">M</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">N</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">O</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">P</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">Q</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">R</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">S</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">T</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">U</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">V</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">W</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">X</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">Y</button></div>
+				<div class="col-3"><button type="button" class="btn btn-info">Z</button></div>
+			</div>
+			
+			<div class="row interaction">
+				<div class="col-6 skill">
+					<button type="button" class="lar skill-1 btn btn-success">
+						<i class="fa fa-usd" aria-hidden="true"></i>
+						<span class="info">Gain 1 extra chance</span>
+					</button>
+				</div>
+				<div class="col-6 skill">
+					<button type="button" class="lar skill-2 btn btn-success">
+						<i class="fa fa-fire" aria-hidden="true"></i>
+						<span class="info">30% chance to instant win</span>
+					</button>
+				</div>
+				<div class="col-6 skill">
+					<button type="button" class="beth skill-1 btn btn-success">
+						<i class="fa fa-bath" aria-hidden="true"></i>
+						<span class="info">Fill in 1 character</span>
+					</button>
+				</div>
+				<div class="col-6 skill">
+					<button type="button" class="beth skill-2 btn btn-success">
+						<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						<span class="info">Remove 1 unused character</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="loader-overlay">
+			<i class="fa fa-refresh fa-spin" aria-hidden="true">
+		</div> -->
+
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="assets/javascripts/game.js"></script>
+	</body>
+</html>
