@@ -9,56 +9,73 @@
 	</head>
 
 	<body>
-		<div class="container landing-container hidden">
+		<div id="landingSection" class="container landing-container">
 			<div id="character-select" class="row">
-				<div class="col-md-4 offset-md-2">
+				<div class="col-md-6 col-lg-5 offset-lg-1">
 					<div class="card character">
-						<div class="character-profile lar-img lar-default"></div>
-					  <div class="card-block">
-					    <h4 class="card-title">Larry</h4>
-					    <p class="card-text">The rich friend with a gambling problem.</p>
-					    
-					    <div class="skills">
-					    	<div class="row skill-brief alert-info">
-					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-usd" aria-hidden="true"></i></div>
+					<div class="card-block">
+						<div class="row intro-row">
+							<div class="col-3">
+								<div class="lar avatar happy-1"></div>
+							</div>
+							<div class="col-9">
+								<div class="char-data">
+									<h4 class="card-title">Larry</h4>
+									<p class="card-text desc">The rich friend with a gambling problem.</p>
+								</div>
+							</div>
+						</div>
+						
+				    <div class="skills">
+				    	<div class="row skill-brief alert-info">
+				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-gift" aria-hidden="true"></i></div>
 
-					    		<div class="col-7 skill-name">Pay2Win</div>
-					    	</div>
-					    	<div class="row">
-					    		<div class="col-sm-12 skill-explain hidden-sm-down">Gain one extra turn</div>
-				    		</div>
-					    </div>
-					    <div class="skills">
-					    	<div class="row skill-brief alert-info">
-					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-fire" aria-hidden="true"></i></div>
-					    		
-					    		<div class="col-7 skill-name">All or Nothing</div>
-					    	</div>
-					    	<div class="row">
-					    		<div class="col-sm-12 skill-explain hidden-sm-down">30% chance to win the game instantly</div>
-				    		</div>
-					    </div>
-					    <div class="skills">
-					    	<div class="row skill-brief alert-warning">
-					    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
-					    		
-					    		<div class="col-7 skill-name">Special Treatment</div>
-					    	</div>
-					    	<div class="row">
-					    		<div class="col-sm-12 skill-explain hidden-sm-down">Always get short words</div>
-				    		</div>
-					    </div>
+				    		<div class="col-7 skill-name">Bribe</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-sm-12 skill-explain hidden-sm-down">Gain one extra turn</div>
+			    		</div>
+				    </div>
+				    <div class="skills">
+				    	<div class="row skill-brief alert-info">
+				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+				    		
+				    		<div class="col-7 skill-name">Gamble O'Clock</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-sm-12 skill-explain hidden-sm-down">30% chance to win the game instantly</div>
+			    		</div>
+				    </div>
+
+				    <div class="skills">
+				    	<div class="row skill-brief alert-warning">
+				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
+				    		
+				    		<div class="col-7 skill-name">Special Treatment</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-sm-12 skill-explain hidden-sm-down">Gain two extra chances</div>
+			    		</div>
+				    </div>
 						    
 					    <a href="#" id="start-lar" onclick="YTK.hangman.initGame(0)" class="start-game-btn btn btn-primary">Start Game</a>
 					  </div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-6 col-lg-5">
 					<div class="card character">
-						<div class="character-profile beth-img beth-default"></div>
 							<div class="card-block">
-								<h4 class="card-title">Beth</h4>
-								<p class="card-text">The office nerdy cat lady.</p>
+								<div class="row intro-row">
+									<div class="col-3">
+										<div class="beth avatar happy-1"></div>
+									</div>
+									<div class="col-9">
+										<div class="char-data">
+											<h4 class="card-title">Larry</h4>
+											<p class="card-text desc">The nerdy cat lady</p>
+										</div>
+									</div>
+								</div>
 								<div class="skills">
 						    	<div class="row skill-brief alert-info">
 						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-bath" aria-hidden="true"></i></div>
@@ -71,7 +88,7 @@
 						    </div>
 								<div class="skills">
 						    	<div class="row skill-brief alert-info">
-						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></div>
+						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-hand-spock-o" aria-hidden="true"></i></div>
 
 						    		<div class="col-7 skill-name">Nerd Sense</div>
 						    	</div>
@@ -96,7 +113,7 @@
 			</div>	
 		</div>
 
-		<div class="container game-container">
+		<div id="gameSection" class="container game-container hidden">
 			<div class="row">
 				<div class="col-3"><div id="lar-avatar" class="lar avatar happy-1"></div><div id="beth-avatar" class="beth avatar happy-1"></div></div>
 				<div class="col-9"><div class="speech-bubble"><span id="main-speech"></span></div></div>
@@ -146,13 +163,13 @@
 			<div class="row interaction">
 				<div class="col-6 skill">
 					<button type="button" class="lar skill-1 btn btn-success">
-						<i class="fa fa-usd" aria-hidden="true"></i>
+						<i class="fa fa-gift" aria-hidden="true"></i>
 						<span class="info">Gain 1 extra chance</span>
 					</button>
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="lar skill-2 btn btn-success">
-						<i class="fa fa-fire" aria-hidden="true"></i>
+						<i class="fa fa-clock-o" aria-hidden="true"></i>
 						<span class="info">30% chance to instant win</span>
 					</button>
 				</div>
@@ -164,7 +181,7 @@
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="beth skill-2 btn btn-success">
-						<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						<i class="fa fa-hand-spock-o" aria-hidden="true"></i>
 						<span class="info">Remove 1 unused character</span>
 					</button>
 				</div>

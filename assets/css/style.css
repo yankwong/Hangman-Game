@@ -32,18 +32,12 @@
     background-repeat: no-repeat;    
 }
 
-.lar-img {
-  background-image: url(../images/larry.jpg);
-}
-.beth-img {
-  background-image: url(../images/beth.jpg); 
+.char-data {
+  padding-left: 30px;
 }
 
-.lar-default {
-	background-position: -304px -180px;
-}
-.beth-default {
-    background-position: -237px -182px;
+.intro-row {
+  margin-bottom: 10px;
 }
 
 span.badge .fa {
@@ -64,14 +58,14 @@ span.badge .fa {
 .avatar {
   width: 100px;
   height: 100px;
+}
+#lar-avatar.avatar, .avatar.lar {
+  background-image: url(../images/larry-mobile.jpg);
+  background-position: -143px -99px;
+}
+#beth-avatar.avatar, .avatar.beth {
   background-image: url(../images/beth-mobile.jpg);
   background-position: -112px -99px;
-}
-#lar-avatar.avatar {
-  background-image: url(../images/larry-mobile.jpg);
-}
-#beth-avatar.avatar {
-  background-image: url(../images/beth-mobile.jpg);
 }
 #beth-avatar.avatar.happy-1 {
   background-position: -112px -99px;

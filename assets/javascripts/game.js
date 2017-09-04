@@ -226,6 +226,15 @@ YTK.hangman = (function() {
     }
   }
 
+  function hideSection(divID) {
+    document.getElementById(divID).className += ' hidden';
+  }
+  function showSection(divID) {
+    var allClasses = document.getElementById(divID).className;
+
+    document.getElementById(divID).className = allClasses.replace(' hidden');
+  }
+
   function pickChar(e, alphabetID) {
     var dashDivs = getCharDivsByID(alphabetID),
         charID = getIntFromStorage('charID');
@@ -262,6 +271,10 @@ YTK.hangman = (function() {
 
     updateSpeech(charID, 'start');
 
+    showSection('gameSection');
+    
+    hideSection('landingSection');
+
     console.log('localstorage: ', localStorage);
   }
 
@@ -277,8 +290,8 @@ YTK.hangman = (function() {
 
 })();
 
-jQuery(window).on('load', function() {
-  YTK.hangman.initGame(1);
-})
+// jQuery(window).on('load', function() {
+//   YTK.hangman.initGame(1);
+// })
 
 
