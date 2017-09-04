@@ -106,6 +106,8 @@
 					<i id="heart-3" class="fa fa-heart" aria-hidden="true"></i>
 					<i id="heart-4" class="fa fa-heart" aria-hidden="true"></i>
 					<i id="heart-5" class="fa fa-heart" aria-hidden="true"></i>
+					<i id="heart-6" class="fa fa-heart lar" aria-hidden="true"></i>
+					<i id="heart-7" class="fa fa-heart lar" aria-hidden="true"></i>
 				</div>
 			</div>
 			<div class="row">
@@ -177,20 +179,20 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Game Over</h5>
+		        <h5 class="modal-title" id="endGameTitle">Game Over</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <div class="ending-picture avatar lar"></div>
-		        <div class="ending-picture avatar beth"></div>
-		        <div class="ending-speech lar">This has been the worst game in the history of games, maybe ever</div>
-		        <div class="ending-speech beth">This ain't over yet, not by a long shot</div>
+		        <div id="lar-end-picture" class="ending-picture avatar lar"></div>
+		        <div id="beth-end-picture" class="ending-picture avatar beth"></div>
+		        <div id="end-speech-lar" class="ending-speech lar">This has been the worst game in the history of games, maybe ever</div>
+		        <div id="end-speech-beth" class="ending-speech beth">This ain't over yet, not by a long shot</div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Play Again</button>
+		        <button type="button" onclick="YTK.hangman.playAgain();"class="btn btn-primary">Play Again</button>
 		      </div>
 		    </div>
 		  </div>

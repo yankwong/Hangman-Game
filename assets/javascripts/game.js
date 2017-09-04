@@ -25,6 +25,25 @@ YTK.hangman = (function() {
           " sad-3"
         ]
       },
+      larSpeech = {
+        "start": [
+          "$ is power my friend",
+          "Can always use more $",
+          "$ is no jQuery here"
+        ],
+        "correct": [
+          "Power of the VIP",
+          "Good right? MY idea!",
+          "My IQ is so high",
+          "Now we talking~"
+        ],
+        "incorrect": [
+          "Triggered",
+          "Unfair! Calling my lawyer",
+          "Worst deal EVER",
+          "Impossibru!"
+        ]
+      },
       bethSpeech = {
         "start": [
           "Sweet, cat paws!",
@@ -35,51 +54,20 @@ YTK.hangman = (function() {
           "Ha! I'm too good",
           "GG Noobz! Too easy",
           "LOLz 1st grade level",
-          "Noice~"
+          "Purrrfection~"
         ],
         "incorrect": [
           "I literally can't even",
           "Could you flipping not?",
-          "Nope",
+          "CATastrophic~~",
           "Weeeak"
-        ],
-        "win" : [
-          "Reminds me of my spelling bee years!"
-        ],
-        "lose" : [
-          "This ain't over yet, not by a long shot!"
-        ]
-      },
-      larSpeech = {
-        "start": [
-          "$ is power my friend.",
-          "Can always use more $",
-          "$ is no jQuery here"
-        ],
-        "correct": [
-          "Power of the VIP",
-          "Good right? My idea!",
-          "My IQ is one of the highest",
-          "Now we talking~"
-        ],
-        "incorrect": [
-          "That's low",
-          "Unfair! Calling my lawyer",
-          "Worst deal EVER",
-          "Impossibru!"
-        ],
-        "win" : [
-          "Reminds me of my spelling bee years!"
-        ],
-        "lose" : [
-          "This ain't over yet, not by a long shot!"
         ]
       },
       alphabets;
 
   function getAlphabetArr() {
-    var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return str.toLowerCase().split('');
+    var str = 'abcdefghijklmnopqrstuvwxyz';
+    return str.split('');
   }
   function ensureStorage() {
     return typeof(Storage) !== "undefined";
@@ -121,17 +109,21 @@ YTK.hangman = (function() {
     var answer = getAnswer();
 
     localStorage.setItem(prefix + 'charID', charID);
-    localStorage.setItem(prefix + 'hearts', 5);
+    localStorage.setItem(prefix + 'hearts', (charID ? 5 : 7));
     localStorage.setItem(prefix + 'skillOne', 1);
     localStorage.setItem(prefix + 'skillTwo', 1);
     localStorage.setItem(prefix + 'answer', answer);
-    localStorage.setItem(prefix + 'unique', JSON.stringify(getUniqueCharArray(answer)));
+    localStorage.setItem(prefix + 'correctNeeded', getUniqueCharArray(answer).length);
+  }
+
+  function getIntFromStorage(key) {
+    return parseInt(localStorage.getItem(prefix + key));
   }
 
   function buildDashes(answerStr){
     var wordsArr = answerStr.split(' '),
         hangmanMain = document.getElementById('hangman-main'),
-        charID = parseInt(localStorage.getItem(prefix + 'charID')),
+        charID = getIntFromStorage('charID'),
         charArr, rowDiv, dashDiv;
 
     for(var i = 0; i < wordsArr.length; i++) {
@@ -151,6 +143,23 @@ YTK.hangman = (function() {
     }
   }
 
+  function initEndGameModal(hasWon, callback) {
+    var modalDiv = document.getElementById('endGameModal'),
+        modalTitleDiv = document.getElementById('endGameTitle');
+
+    if (hasWon) {
+      modalTitleDiv.innerHTML = 'Congrats!! You WON!!';
+      document.getElementById("end-speech-lar").innerHTML = 'Years of gambling prepared me for this moment';
+      document.getElementById("end-speech-beth").innerHTML = 'Is this what ESport is? I think I\'m gifted';
+      document.getElementById("lar-end-picture").className += ' won';
+      document.getElementById("beth-end-picture").className += ' won';
+    }
+    else {
+
+    }
+    callback();
+  }
+
   function guessCorrect(dashDivs) {
     return dashDivs.length > 0;
   }
@@ -168,12 +177,12 @@ YTK.hangman = (function() {
     localStorage.setItem(prefix + 'hearts', (heartsTot - 1));
   }
   function incorrectActions() {
-    var heartsTotal = parseInt(localStorage.getItem(prefix + 'hearts'));
+    var heartsTotal = getIntFromStorage('hearts');
 
     loseHeart(heartsTotal);
 
     if (heartsTotal === 1) {
-      $('#endGameModal').modal('show')
+      $('#endGameModal').modal('show');
     }
   }
 
@@ -200,16 +209,33 @@ YTK.hangman = (function() {
     }  
   }
 
+  function correctActions(dashDivs, alphabetID) {
+    var correctNeeded = getIntFromStorage('correctNeeded');
+
+    revealDashs(dashDivs, alphabetID);
+
+    correctNeeded = correctNeeded - 1;
+
+    if (correctNeeded == 0) {
+      initEndGameModal(true, function() {
+        $('#endGameModal').modal('show');
+      });
+    }
+    else {
+      localStorage.setItem(prefix + 'correctNeeded', correctNeeded);
+    }
+  }
+
   function pickChar(e, alphabetID) {
     var dashDivs = getCharDivsByID(alphabetID),
-        charID = parseInt(localStorage.getItem(prefix + 'charID'));
+        charID = getIntFromStorage('charID');
 
     e.setAttribute('disabled', true);
 
     if (guessCorrect(dashDivs)) {
       updateSpeech(charID, 'correct');
       updateAvatar(charID, 'correct');
-      revealDashs(dashDivs, alphabetID);
+      correctActions(dashDivs, alphabetID);
     }
 
     else {
@@ -239,15 +265,20 @@ YTK.hangman = (function() {
     console.log('localstorage: ', localStorage);
   }
 
+  function playAgain() {
+    window.location.href = "index.html";
+  }
+
   return {
     initGame: initGame,
-    pickChar: pickChar
+    pickChar: pickChar,
+    playAgain: playAgain
   }
 
 })();
 
 jQuery(window).on('load', function() {
-  YTK.hangman.initGame(0);
+  YTK.hangman.initGame(1);
 })
 
 
