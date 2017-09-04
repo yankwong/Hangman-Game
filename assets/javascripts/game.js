@@ -63,7 +63,8 @@ YTK.hangman = (function() {
           "Weeeak"
         ]
       },
-      alphabets;
+      alphabets,
+      bkgMusic;
 
   function getAlphabetArr() {
     var str = 'abcdefghijklmnopqrstuvwxyz';
@@ -254,6 +255,19 @@ YTK.hangman = (function() {
     }
   }
 
+  function switchSections() {
+
+    showSection('gameSection');
+
+    hideSection('header-intro');
+
+    hideSection('footer');
+
+    hideSection('landingSection');
+
+    showSection('home-link');
+  }
+
   function initGame(charID) {
 
     alphabets = getAlphabetArr();
@@ -271,15 +285,7 @@ YTK.hangman = (function() {
 
     updateSpeech(charID, 'start');
 
-    showSection('gameSection');
-
-    hideSection('header-intro');
-
-    hideSection('footer');
-
-    hideSection('landingSection');
-
-    showSection('home-link');
+    switchSections();
 
     console.log('localstorage: ', localStorage);
   }
@@ -288,21 +294,42 @@ YTK.hangman = (function() {
     window.location.href = "index.html";
   }
 
-  function toggleMusic() {
-    return;
+  function initBkgMusic() {
+    bkgMusic = new Audio('assets/music/13-map-1-world.mp3');
+    bkgMusic.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+
+    stopMusic();
+  }
+
+  function playMusic() {
+    $('#btn-play-music').addClass('hidden');
+    $('#btn-stop-music').removeClass('hidden');
+    bkgMusic.play();
+  }
+  function stopMusic() {
+    $('#btn-stop-music').addClass('hidden');
+    $('#btn-play-music').removeClass('hidden');
+    // hideSection("btn-stop-music");
+    // showSection("btn-play-music");
+    bkgMusic.pause();
   }
 
   return {
     initGame: initGame,
     pickChar: pickChar,
     playAgain: playAgain,
-    toggleMusic: toggleMusic
+    initBkgMusic: initBkgMusic,
+    playMusic: playMusic,
+    stopMusic: stopMusic
   }
 
 })();
 
-// jQuery(window).on('load', function() {
-//   YTK.hangman.initGame(1);
-// })
+$(function() {
+  YTK.hangman.initBkgMusic();
+});
 
 
