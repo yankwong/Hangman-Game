@@ -287,6 +287,11 @@ YTK.hangman = (function() {
 
     switchSections();
 
+    if (charID == 1) {
+      setTimeout(function() {
+        $('#tips-alert').addClass('show');  
+      }, 1500);
+    }
     console.log('localstorage: ', localStorage);
   }
 
