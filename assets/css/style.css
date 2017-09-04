@@ -24,7 +24,6 @@
   font-size: 55px;
 }
 
-
 .character-profile {
     width: 300px;
     max-width: 100%;
@@ -68,11 +67,53 @@ span.badge .fa {
   background-image: url(../images/beth-mobile.jpg);
   background-position: -112px -99px;
 }
+#lar-avatar.avatar {
+  background-image: url(../images/larry-mobile.jpg);
+}
+#beth-avatar.avatar {
+  background-image: url(../images/beth-mobile.jpg);
+}
+#beth-avatar.avatar.happy-1 {
+  background-position: -112px -99px;
+}
+#beth-avatar.avatar.happy-2 {
+  background-position: -132px -539px;
+}
+#beth-avatar.avatar.happy-3 {
+  background-position: -408px -524px;
+}
+#beth-avatar.avatar.sad-1 {
+  background-position: -683px -531px
+}
+#beth-avatar.avatar.sad-2 {
+  background-position: -380px -102px;
+}
+#beth-avatar.avatar.sad-3 {
+  background-position: -681px -99px;
+}
+#lar-avatar.avatar.happy-1 {
+  background-position: -143px -99px;
+}
+#lar-avatar.avatar.happy-2 {
+  background-position: -130px -539px;
+}
+#lar-avatar.avatar.happy-3 {
+  background-position: -413px -539px;
+}
+#lar-avatar.avatar.sad-1 {
+  background-position: -656px -541px;
+}
+#lar-avatar.avatar.sad-2 {
+  background-position: -411px -102px;
+}
+#lar-avatar.avatar.sad-3 {
+  background-position: -670px -99px;
+}
 
 /*http://leaverou.github.io/bubbly/*/
 .speech-bubble {
   position: relative;
-  background: #fdf7ff;
+  background: #eceeef;
   border-radius: .4em;
   margin-left: 10px;
   min-height: 100px;
@@ -89,7 +130,7 @@ span.badge .fa {
   width: 0;
   height: 0;
   border: 20px solid transparent;
-  border-right-color: #fdf7ff;
+  border-right-color: #eceeef;
   border-left: 0;
   border-bottom: 0;
   margin-top: -10px;
@@ -97,12 +138,39 @@ span.badge .fa {
 }
 .heart-bar {
   color: red;
+  font-size: 20px;
 }
 .hangman-main {
-  min-height: 250px;
+  min-height: 200px;
   margin: 10px auto;
-  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
+
+.hangman-main .dash{
+  display: inline-block;
+  font-size: 25px;
+  padding: 3px;
+}
+.hangman-main .dash::before {
+  font-family: "FontAwesome";
+  content: "\f1b0";
+}
+.hangman-main .dash.lar::before {
+  font-family: "FontAwesome";
+  content: "\f155"; 
+}
+.hangman-main .dash.reveal::before {
+  font-family: "FontAwesome";
+  content: "";
+}
+
+.keyboard {
+  margin-bottom: 15px;
+}
+
 .keyboard .col-3 {
   padding-left:10px;
   padding-right: 10px;
@@ -126,6 +194,45 @@ span.badge .fa {
 .skill .btn {
   width: 100%;
 }
-.lar {
-  display: none;
+#endGameModal .ending-picture {
+  min-height: 250px;
+  min-height: 350px;
+  height: 100px;
+  width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+#endGameModal .ending-picture.lar {
+  background-image: url(../images/larry-mobile.jpg);
+    width: 250px;
+    background-position: -581px -50px;
+}
+#endGameModal .ending-picture.beth {
+  background-image: url(../images/beth-mobile.jpg);
+  background-position: -550px -50px;
+}
+#endGameModal .ending-speech {
+  position: relative;
+  background: #00b8cb;
+  border-radius: .4em;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+#endGameModal .ending-speech:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-bottom-color: #00b8cb;
+  border-top: 0;
+  border-left: 0;
+  margin-left: -10px;
+  margin-top: -20px;
 }

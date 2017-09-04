@@ -2,14 +2,13 @@
 <html>
 	<head>
 		<title>Let's play Hangman!</title>
-		<link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
+		<link rel="icon" href="assets/images/favicon.jpg" type="image/x-icon" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	</head>
 
 	<body>
-
 		<div class="container landing-container hidden">
 			<div id="character-select" class="row">
 				<div class="col-md-4 offset-md-2">
@@ -99,46 +98,47 @@
 
 		<div class="container game-container">
 			<div class="row">
-				<div class="col-3"><div class="avatar"></div></div>
-				<div class="col-9"><div class="speech-bubble">Ha! I'm too good</div></div>
+				<div class="col-3"><div id="lar-avatar" class="lar avatar happy-1"></div><div id="beth-avatar" class="beth avatar happy-1"></div></div>
+				<div class="col-9"><div class="speech-bubble"><span id="main-speech"></span></div></div>
 				<div class="col-12 heart-bar">
-					<i class="fa fa-heart heart-1" aria-hidden="true"></i>
-					<i class="fa fa-heart heart-2" aria-hidden="true"></i>
-					<i class="fa fa-heart heart-3" aria-hidden="true"></i>
-					<i class="fa fa-heart heart-4" aria-hidden="true"></i>
-					<i class="fa fa-heart heart-5" aria-hidden="true"></i>
+					<i id="heart-1" class="fa fa-heart" aria-hidden="true"></i>
+					<i id="heart-2" class="fa fa-heart" aria-hidden="true"></i>
+					<i id="heart-3" class="fa fa-heart" aria-hidden="true"></i>
+					<i id="heart-4" class="fa fa-heart" aria-hidden="true"></i>
+					<i id="heart-5" class="fa fa-heart" aria-hidden="true"></i>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12 hangman-main"></div>
+				<div id="hangman-main" class="col-11 hangman-main">
+				</div>
 			</div>
 			<div class="row keyboard">
-				<div class="col-3"><button type="button" class="btn btn-info">A</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">B</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">C</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">D</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">E</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">F</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">G</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">H</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">I</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">J</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">K</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">L</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">M</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">N</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">O</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">P</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">Q</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">R</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">S</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">T</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">U</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">V</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">W</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">X</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">Y</button></div>
-				<div class="col-3"><button type="button" class="btn btn-info">Z</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 0)" class="btn btn-info">A</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 1)" class="btn btn-info">B</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 2)" class="btn btn-info">C</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 3)" class="btn btn-info">D</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 4)" class="btn btn-info">E</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 5)" class="btn btn-info">F</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 6)" class="btn btn-info">G</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 7)" class="btn btn-info">H</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 8)" class="btn btn-info">I</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 9)" class="btn btn-info">J</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 10)" class="btn btn-info">K</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 11)" class="btn btn-info">L</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 12)" class="btn btn-info">M</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 13)" class="btn btn-info">N</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 14)" class="btn btn-info">O</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 15)" class="btn btn-info">P</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 16)" class="btn btn-info">Q</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 17)" class="btn btn-info">R</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 18)" class="btn btn-info">S</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 19)" class="btn btn-info">T</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 20)" class="btn btn-info">U</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 21)" class="btn btn-info">V</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 22)" class="btn btn-info">W</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 23)" class="btn btn-info">X</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 24)" class="btn btn-info">Y</button></div>
+				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 25)" class="btn btn-info">Z</button></div>
 			</div>
 			
 			<div class="row interaction">
@@ -171,6 +171,30 @@
 		<!-- <div id="loader-overlay">
 			<i class="fa fa-refresh fa-spin" aria-hidden="true">
 		</div> -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="endGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Game Over</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="ending-picture avatar lar"></div>
+		        <div class="ending-picture avatar beth"></div>
+		        <div class="ending-speech lar">This has been the worst game in the history of games, maybe ever</div>
+		        <div class="ending-speech beth">This ain't over yet, not by a long shot</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Play Again</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
