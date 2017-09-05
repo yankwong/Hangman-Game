@@ -94,8 +94,21 @@ YTK.hangman = (function() {
   function ensureStorage() {
     return typeof(Storage) !== "undefined";
   }
+  function isLar(charID) {
+    return charID == 0;
+  }
   function ensureCharID(id) {
     return id == 0 || id == 1;
+  }
+  // solution from SO, obtain value of GET variable
+  // usage: getURLParam('q', 'hxxp://example.com/?q=abc')
+  function getURLParam( name, url ) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( url );
+    return results == null ? null : results[1];
   }
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -112,7 +125,6 @@ YTK.hangman = (function() {
         uniqueArr.push(answerArr[i]);
       }
     }
-
     return uniqueArr;
   }
   function showLoader() {
@@ -266,6 +278,7 @@ YTK.hangman = (function() {
   function hideSection(divID) {
     document.getElementById(divID).className += ' hidden';
   }
+
   function showSection(divID) {
     var allClasses = document.getElementById(divID).className;
 
@@ -273,16 +286,10 @@ YTK.hangman = (function() {
   }
 
   function getOneCorrectAlphabet() {
-
     var $unknownAlphabet = $('.dash').not('.reveal').first(),
-        charID = getIntFromStorage('charID'),
-        charName = charID ? 'beth' : 'lar',
-        alphaClass = '',
-        classArr = $unknownAlphabet.attr('class').split(' ');
-
-    var alphaID = parseInt(classArr[1].replace('char-', ''));
-
-    var btnClass = '.btn-' + alphabets[alphaID];
+        classArr = $unknownAlphabet.attr('class').split(' '),
+        alphaID = parseInt(classArr[1].replace('char-', '')),
+        btnClass = '.btn-' + alphabets[alphaID];
 
     $(btnClass).attr('disabled', true);
 
@@ -337,7 +344,7 @@ YTK.hangman = (function() {
 
     localStorage.setItem((prefix + 'skill'+skillID), 0)
 
-    if (charID == 0) {
+    if (isLar(charID)) {
       if (skillID == 0) {
         if (getRandomInt(0, 3) === 0) {
           wonGame();
@@ -390,8 +397,25 @@ YTK.hangman = (function() {
         return alphabets[i];
       }
     }
-
     return '';
+  }
+
+  function usePassive(charID) {
+    var answer, index, hintTxt;
+
+    if (isLar(charID)) {
+      return;
+    }
+
+    answer  = localStorage.getItem(prefix + 'answer');
+    index   = wordsArray.indexOf(answer);
+    hintTxt = hintsArray[index];
+
+    document.getElementById('tips-text').innerHTML = hintTxt;
+
+    setTimeout(function() {
+      $('#tips-alert').addClass('show');  
+    }, 800);    
   }
 
   function useSkill(element, skillID) {
@@ -401,20 +425,6 @@ YTK.hangman = (function() {
 
     if (isSkillAvailable(skillID)) {
        executeSkill(charID, skillID); 
-    }
-  }
-
-  function usePassive(charID) {
-    var answer = localStorage.getItem(prefix + 'answer'),
-        index = wordsArray.indexOf(answer),
-        hintTxt = hintsArray[index];
-
-    document.getElementById('tips-text').innerHTML = hintTxt;
-
-    if (charID == 1) {
-      setTimeout(function() {
-        $('#tips-alert').addClass('show');  
-      }, 800);
     }
   }
 
@@ -440,28 +450,27 @@ YTK.hangman = (function() {
     switchSections();
 
     usePassive(charID); //beth's passive
-    
   }
 
-  function getParamFromURL(param) {
-    var url_string = window.location.href,
-        url = new URL(url_string);
-    
-    return url.searchParams.get(param);
-  }
 
   function goHome(charID) {
-    window.location.href = "index.html";
-  }
     
-  function goCharGame(charID) {
-    if (charID == 0 || charID == 1) {
+    if (typeof(charID) !== "undefined" && ensureCharID(charID)) {
       window.location.href = "index.html?cid=" + charID;
     }
     else {
-      goHome();  
+      window.location.href = "index.html";
     }
   }
+    
+  // function goCharGame(charID) {
+  //   if (charID == 0 || charID == 1) {
+  //     window.location.href = "index.html?cid=" + charID;
+  //   }
+  //   else {
+  //     goHome();  
+  //   }
+  // }
 
   function initBkgMusic() {
     bkgMusic = new Audio('assets/music/13-map-1-world.mp3');
@@ -504,14 +513,16 @@ YTK.hangman = (function() {
   }
 
   function initPage() {
-    var charID = getParamFromURL('cid');
+    var charID = getURLParam('cid', window.location.href);
 
-    setWonTotal();
-    setGameTotal();
     initBkgMusic();
 
-    if (charID == 0 || charID == 1) {
+    if (charID != null && ensureCharID(charID)) {
       initGame(parseInt(charID));
+    }
+    else {
+      setWonTotal();
+      setGameTotal();  
     }
   }
 
@@ -523,8 +534,7 @@ YTK.hangman = (function() {
     initPage: initPage,
     initGame: initGame,
     pickChar: pickChar,
-    playAgain: goHome,
-    goCharGame: goCharGame,
+    goHome: goHome,
     playMusic: playMusic,
     stopMusic: stopMusic,
     useSkill: useSkill,
@@ -536,5 +546,3 @@ YTK.hangman = (function() {
 $(function() {
   YTK.hangman.initPage();
 });
-
-
