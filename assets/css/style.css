@@ -12,6 +12,9 @@ header {
   left: 0;
   right: 0;
 }
+#header-intro {
+  font-weight: bold;
+}
 #loader-overlay {
   position: fixed;
   display: none;
@@ -32,6 +35,10 @@ header {
 
 #loader-overlay .fa{
   font-size: 55px;
+}
+
+#landingSection {
+  margin-top: 40px;
 }
 
 .book-keeping {
@@ -229,6 +236,9 @@ span.badge .fa {
   margin-top: 5px;
   display: block;
   font-size: 12px;
+}
+.skill-explain {
+  text-align: center;
 }
 .skill .btn {
   width: 100%;
