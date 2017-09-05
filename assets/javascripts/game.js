@@ -15,7 +15,7 @@ YTK.hangman = (function() {
         "mikasa ackerman",
       ],
       hintsArray = [
-        "God mode in Doom"
+        "God mode in Doom",
         "Name of a dragon",
         "Anime, OP bald guy",
         "Trump's vocab",
