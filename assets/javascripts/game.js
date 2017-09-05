@@ -473,6 +473,12 @@ YTK.hangman = (function() {
     document.getElementById('games-total').innerHTML = gamesTotal; 
   }
 
+  function clearStats() {
+    localStorage.setItem(prefix + 'gameWon', 0);
+    localStorage.setItem(prefix + 'gameTotal', 0);
+    playAgain();
+  }
+
   function initPage() {
     setWonTotal();
     setGameTotal();
@@ -486,7 +492,8 @@ YTK.hangman = (function() {
     playAgain: playAgain,
     playMusic: playMusic,
     stopMusic: stopMusic,
-    useSkill: useSkill
+    useSkill: useSkill,
+    clearStats: clearStats
   }
 
 })();

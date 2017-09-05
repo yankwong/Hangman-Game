@@ -53,6 +53,15 @@ header {
   font-size: 18px;
 }
 
+#score-row .card-header {
+  display: flex; 
+  justify-content: space-between;
+}
+
+#btn-clear-stat {
+  font-size: 10px;
+}
+
 #about-row {
   margin-bottom: 60px;
 }
@@ -275,7 +284,7 @@ span.badge .fa {
 #endGameModal .ending-picture {
   min-height: 350px;
   height: 100px;
-  width: 310px;
+  width: 335px;
   max-width: 100%;
   margin: 0 auto;
 }
