@@ -159,6 +159,12 @@ YTK.hangman = (function() {
     if (localStorage.getItem(prefix + 'gameTotal') === null) {
       localStorage.setItem(prefix + 'gameTotal', 0);
     }
+    if (localStorage.getItem(prefix + 'larWon') === null) {
+      localStorage.setItem(prefix + 'larWon', 0);
+    }
+    if (localStorage.getItem(prefix + 'bethWon') === null) {
+      localStorage.setItem(prefix + 'bethWon', 0);
+    }
   }
 
   function getIntFromStorage(key) {
@@ -190,7 +196,8 @@ YTK.hangman = (function() {
 
   function initEndGameModal(hasWon, callback) {
     var modalDiv = document.getElementById('endGameModal'),
-        modalTitleDiv = document.getElementById('endGameTitle');
+        modalTitleDiv = document.getElementById('endGameTitle'),
+        charID = getIntFromStorage('charID');
 
     $('#endGameModal').on('hidden.bs.modal', function() {
       goHome();
@@ -204,9 +211,30 @@ YTK.hangman = (function() {
       document.getElementById("beth-end-picture").className += ' won';
 
       localStorage.setItem(prefix + 'gameWon', getIntFromStorage('gameWon') + 1);
+      if (isLar(charID)) {
+        localStorage.setItem(prefix + 'larWon', getIntFromStorage('larWon') + 1);
+      }
+      else {
+        localStorage.setItem(prefix + 'bethWon', getIntFromStorage('bethWon') + 1);
+      }
     }
     
     callback();
+  }
+
+  function putMVP() {
+    var larWon = getIntFromStorage('larWon'),
+        bethWon = getIntFromStorage('bethWon');
+
+    if (larWon > 0 && larWon > bethWon) {
+      document.getElementById('lar-mvp').classList.remove("hidden");
+    }
+    else if (bethWon > 0 && bethWon > larWon) {
+      document.getElementById('beth-mvp').classList.remove("hidden");
+    }
+    else if (bethWon > 0 && larWon > 0 && bethWon == larWon) {
+      // draw game
+    }
   }
 
   function guessCorrect(dashDivs) {
@@ -509,6 +537,8 @@ YTK.hangman = (function() {
   function clearStats() {
     localStorage.setItem(prefix + 'gameWon', 0);
     localStorage.setItem(prefix + 'gameTotal', 0);
+    localStorage.setItem(prefix + 'larWon', 0);
+    localStorage.setItem(prefix + 'bethWon', 0);
     goHome();
   }
 
@@ -523,6 +553,7 @@ YTK.hangman = (function() {
     else {
       setWonTotal();
       setGameTotal();  
+      putMVP();
     }
   }
 

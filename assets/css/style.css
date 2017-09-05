@@ -101,6 +101,15 @@ header {
   margin-bottom: 0;
 }
 
+.most-win {
+  margin-left: 10px;
+}
+
+.character .card-title .most-win {
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 10px;
+}
+
 .card.character {
   margin-bottom: 10px;
 }
