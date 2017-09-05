@@ -4,14 +4,24 @@ YTK.hangman = (function() {
 
   var prefix = 'YTK_',
       wordsArray = [
-      "rhaegal",
-      "saitama",
-      "covfefe",
-      "zzyzx road",
-      "evangelion",
-      "brendan eich",
-      "trinity force",
-      "mikasa ackerman",
+        "rhaegal",
+        "saitama",
+        "covfefe",
+        "zzyzx road",
+        "evangelion",
+        "brendan eich",
+        "trinity force",
+        "mikasa ackerman",
+      ],
+      hintsArray = [
+        "Name of a dragon",
+        "Anime, OP bald guy",
+        "Trump's vocab",
+        "Weird road name",
+        "Top anime from the 90s",
+        "Inventor of JS",
+        "AD item from League",
+        "Anime, titans slayer"
       ],
       avatars = {
         "correct": [
@@ -373,6 +383,12 @@ YTK.hangman = (function() {
   }
 
   function usePassive(charID) {
+    var answer = localStorage.getItem(prefix + 'answer'),
+        index = wordsArray.indexOf(answer),
+        hintTxt = hintsArray[index];
+
+    document.getElementById('tips-text').innerHTML = hintTxt;
+
     if (charID == 1) {
       setTimeout(function() {
         $('#tips-alert').addClass('show');  

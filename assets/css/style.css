@@ -215,6 +215,9 @@ span.badge .fa {
 .keyboard .btn-info{
   width: 100%;
 }
+.keyboard .btn-info:disabled {
+  background-color: #D3D3D3;
+}
 .skill {
   padding-left: 10px;
   padding-right: 10px;
