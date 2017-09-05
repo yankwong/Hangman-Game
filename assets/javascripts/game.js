@@ -42,7 +42,11 @@ YTK.hangman = (function() {
           "Unfair! Calling my lawyer",
           "Worst deal EVER",
           "Impossibru!"
+        ],
+        "skill": [
+          "Greed is indeed good"
         ]
+
       },
       bethSpeech = {
         "start": [
@@ -52,15 +56,19 @@ YTK.hangman = (function() {
         ],
         "correct": [
           "Ha! I'm too good",
-          "GG Noobz! Too easy",
           "LOLz 1st grade level",
-          "Purrrfection~"
+          "Purrrfection~",
+          "Am I right or am I right?"
         ],
         "incorrect": [
           "I literally can't even",
           "Could you flipping not?",
           "CATastrophic~~",
           "Weeeak"
+        ],
+        "skill": [
+          "My superpower saved the day",
+          "Witness me~~~!!"
         ]
       },
       alphabets,
@@ -111,8 +119,8 @@ YTK.hangman = (function() {
 
     localStorage.setItem(prefix + 'charID', charID);
     localStorage.setItem(prefix + 'hearts', (charID ? 5 : 7));
-    localStorage.setItem(prefix + 'skillOne', 1);
-    localStorage.setItem(prefix + 'skillTwo', 1);
+    localStorage.setItem(prefix + 'skill0', 1);
+    localStorage.setItem(prefix + 'skill1', 1);
     localStorage.setItem(prefix + 'answer', answer);
     localStorage.setItem(prefix + 'correctNeeded', getUniqueCharArray(answer).length);
   }
@@ -155,9 +163,7 @@ YTK.hangman = (function() {
       document.getElementById("lar-end-picture").className += ' won';
       document.getElementById("beth-end-picture").className += ' won';
     }
-    else {
-
-    }
+    
     callback();
   }
 
@@ -218,9 +224,7 @@ YTK.hangman = (function() {
     correctNeeded = correctNeeded - 1;
 
     if (correctNeeded == 0) {
-      initEndGameModal(true, function() {
-        $('#endGameModal').modal('show');
-      });
+      wonGame();
     }
     else {
       localStorage.setItem(prefix + 'correctNeeded', correctNeeded);
@@ -234,6 +238,23 @@ YTK.hangman = (function() {
     var allClasses = document.getElementById(divID).className;
 
     document.getElementById(divID).classList.remove("hidden");
+  }
+
+  function getOneCorrectAlphabet() {
+
+    var $unknownAlphabet = $('.dash').not('.reveal').first(),
+        charID = getIntFromStorage('charID'),
+        charName = charID ? 'beth' : 'lar',
+        alphaClass = '',
+        classArr = $unknownAlphabet.attr('class').split(' ');
+
+    var alphaID = parseInt(classArr[1].replace('char-', ''));
+
+    var btnClass = '.btn-' + alphabets[alphaID];
+
+    $(btnClass).attr('disabled', true);
+
+    correctActions(getCharDivsByID(alphaID), alphaID);
   }
 
   function pickChar(e, alphabetID) {
@@ -268,6 +289,97 @@ YTK.hangman = (function() {
     showSection('home-link');
   }
 
+  function isSkillAvailable(skillID) {
+    var skillCount = getIntFromStorage('skill' + skillID);
+
+    return skillCount === 1;
+  }
+
+  function wonGame() {
+    initEndGameModal(true, function() {
+      $('#endGameModal').modal('show');
+    });
+  }
+
+  function executeSkill(charID, skillID) {
+
+    localStorage.setItem((prefix + 'skill'+skillID), 0)
+
+    if (charID == 0) {
+      if (skillID == 0) {
+        if (getRandomInt(0, 3) === 0) {
+          wonGame();
+        }
+      }
+      else {
+        if (getRandomInt(0, 1) === 0) {
+          updateSpeech(charID, 'skill');
+          updateAvatar(charID, 'correct');
+
+          getOneCorrectAlphabet();
+
+          setTimeout(function() {
+            getOneCorrectAlphabet()
+          }, 100);
+        }
+        else {
+          updateSpeech(charID, 'incorrect');
+          updateAvatar(charID, 'incorrect');
+          for (var i = 0; i < 3; i++) {
+            incorrectActions();
+          }
+        }
+      }
+    }
+    else {
+      updateSpeech(charID, 'skill');
+      updateAvatar(charID, 'correct');
+
+      if (skillID == 0) {
+        getOneCorrectAlphabet();
+      }
+      else {
+        var alpha = getWrongAlphabet();
+
+        $('.btn-'+alpha, '.keyboard').attr("disabled", true);        
+      }
+    }
+  }
+
+  function getWrongAlphabet() {
+    var answerArr = localStorage.getItem(prefix + 'answer').split('');
+
+    for (var i = 0; i < 26; i++) {
+
+      var $dashDiv = $('.dash.char-' + i);
+
+      if ($.inArray(alphabets[i], answerArr) === -1 && !$dashDiv.prop("disabled")) {
+
+        return alphabets[i];
+      }
+    }
+
+    return '';
+  }
+
+  function useSkill(element, skillID) {
+    var charID = getIntFromStorage('charID');
+
+    element.setAttribute('disabled', true);
+
+    if (isSkillAvailable(skillID)) {
+       executeSkill(charID, skillID); 
+    }
+  }
+
+  function usePassive(charID) {
+    if (charID == 1) {
+      setTimeout(function() {
+        $('#tips-alert').addClass('show');  
+      }, 800);
+    }
+  }
+
   function initGame(charID) {
 
     alphabets = getAlphabetArr();
@@ -287,11 +399,8 @@ YTK.hangman = (function() {
 
     switchSections();
 
-    if (charID == 1) {
-      setTimeout(function() {
-        $('#tips-alert').addClass('show');  
-      }, 1500);
-    }
+    usePassive(charID); //beth's passive
+    
     console.log('localstorage: ', localStorage);
   }
 
@@ -314,6 +423,7 @@ YTK.hangman = (function() {
     showSection("btn-stop-music");
     bkgMusic.play();
   }
+
   function stopMusic() {
     hideSection("btn-stop-music");
     showSection("btn-play-music");
@@ -326,7 +436,8 @@ YTK.hangman = (function() {
     playAgain: playAgain,
     initBkgMusic: initBkgMusic,
     playMusic: playMusic,
-    stopMusic: stopMusic
+    stopMusic: stopMusic,
+    useSkill: useSkill
   }
 
 })();
