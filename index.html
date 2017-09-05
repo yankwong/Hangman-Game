@@ -51,9 +51,9 @@
 				    </div>
 				    <div class="skills">
 				    	<div class="row skill-brief alert-info">
-				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-star-half-o" aria-hidden="true"></i></div>
 				    		
-				    		<div class="col-7 skill-name">Gamble O'Clock</div>
+				    		<div class="col-7 skill-name">Fifty-Fifty</div>
 				    	</div>
 				    	<div class="row">
 				    		<div class="col-sm-12 skill-explain hidden-sm-down">Get 2 words or lose 3 hearts</div>
@@ -215,7 +215,7 @@
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="lar skill-2 btn btn-success" onclick="YTK.hangman.useSkill(this, 1);">
-						<i class="fa fa-clock-o" aria-hidden="true"></i>
+						<i class="fa fa-star-half-o" aria-hidden="true"></i>
 						<span class="info">Get 2 words or lose 3 hearts</span>
 					</button>
 				</div>
@@ -260,8 +260,9 @@
 		        <div id="end-speech-beth" class="ending-speech beth">This ain't over yet, not by a long shot</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" onclick="YTK.hangman.playAgain();" class="btn btn-primary">Play Again</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Character Select</button>
+		        <button type="button" onclick="YTK.hangman.goCharGame(0);" class="btn btn-primary lar">Rematch w. Lar</button>
+		        <button type="button" onclick="YTK.hangman.goCharGame(1);" class="btn btn-primary beth">Rematch w. Beth</button>
 		      </div>
 		    </div>
 		  </div>

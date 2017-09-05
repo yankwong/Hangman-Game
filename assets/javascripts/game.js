@@ -180,6 +180,10 @@ YTK.hangman = (function() {
     var modalDiv = document.getElementById('endGameModal'),
         modalTitleDiv = document.getElementById('endGameTitle');
 
+    $('#endGameModal').on('hidden.bs.modal', function() {
+      goHome();
+    });
+
     if (hasWon) {
       modalTitleDiv.innerHTML = 'Congrats!! You WON!!';
       document.getElementById("end-speech-lar").innerHTML = 'Years of gambling prepared me for this moment';
@@ -215,7 +219,9 @@ YTK.hangman = (function() {
     loseHeart(heartsTotal);
 
     if (heartsTotal === 1) {
-      $('#endGameModal').modal('show');
+      initEndGameModal(false, function() {
+        $('#endGameModal').modal('show');  
+      });
     }
   }
 
@@ -437,8 +443,24 @@ YTK.hangman = (function() {
     
   }
 
-  function goHome() {
+  function getParamFromURL(param) {
+    var url_string = window.location.href,
+        url = new URL(url_string);
+    
+    return url.searchParams.get(param);
+  }
+
+  function goHome(charID) {
     window.location.href = "index.html";
+  }
+    
+  function goCharGame(charID) {
+    if (charID == 0 || charID == 1) {
+      window.location.href = "index.html?cid=" + charID;
+    }
+    else {
+      goHome();  
+    }
   }
 
   function initBkgMusic() {
@@ -482,9 +504,19 @@ YTK.hangman = (function() {
   }
 
   function initPage() {
+    var charID = getParamFromURL('cid');
+
     setWonTotal();
     setGameTotal();
-    initBkgMusic()
+    initBkgMusic();
+
+    if (charID == 0 || charID == 1) {
+      initGame(parseInt(charID));
+    }
+  }
+
+  function getChar() {
+    return getIntFromStorage('charID');
   }
 
   return {
@@ -492,6 +524,7 @@ YTK.hangman = (function() {
     initGame: initGame,
     pickChar: pickChar,
     playAgain: goHome,
+    goCharGame: goCharGame,
     playMusic: playMusic,
     stopMusic: stopMusic,
     useSkill: useSkill,
