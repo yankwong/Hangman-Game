@@ -4,6 +4,7 @@ YTK.hangman = (function() {
 
   var prefix = 'YTK_',
       wordsArray = [
+        "iddqd",
         "rhaegal",
         "saitama",
         "covfefe",
@@ -14,6 +15,7 @@ YTK.hangman = (function() {
         "mikasa ackerman",
       ],
       hintsArray = [
+        "God mode in Doom"
         "Name of a dragon",
         "Anime, OP bald guy",
         "Trump's vocab",
@@ -49,12 +51,13 @@ YTK.hangman = (function() {
         ],
         "incorrect": [
           "Triggered",
-          "Unfair! Calling my lawyer",
+          "Unfair! Imma call the cops",
           "Worst deal EVER",
           "Impossibru!"
         ],
         "skill": [
-          "Greed is indeed good"
+          "Greed is very good",
+          "YOLO~"
         ]
 
       },
@@ -77,7 +80,7 @@ YTK.hangman = (function() {
           "Weeeak"
         ],
         "skill": [
-          "My superpower saved the day",
+          "My super power saved the day",
           "Witness me~~~!!"
         ]
       },
@@ -432,10 +435,9 @@ YTK.hangman = (function() {
 
     usePassive(charID); //beth's passive
     
-    console.log('localstorage: ', localStorage);
   }
 
-  function playAgain() {
+  function goHome() {
     window.location.href = "index.html";
   }
 
@@ -476,7 +478,7 @@ YTK.hangman = (function() {
   function clearStats() {
     localStorage.setItem(prefix + 'gameWon', 0);
     localStorage.setItem(prefix + 'gameTotal', 0);
-    playAgain();
+    goHome();
   }
 
   function initPage() {
@@ -489,7 +491,7 @@ YTK.hangman = (function() {
     initPage: initPage,
     initGame: initGame,
     pickChar: pickChar,
-    playAgain: playAgain,
+    playAgain: goHome,
     playMusic: playMusic,
     stopMusic: stopMusic,
     useSkill: useSkill,
