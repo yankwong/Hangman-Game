@@ -133,6 +133,17 @@ YTK.hangman = (function() {
     localStorage.setItem(prefix + 'skill1', 1);
     localStorage.setItem(prefix + 'answer', answer);
     localStorage.setItem(prefix + 'correctNeeded', getUniqueCharArray(answer).length);
+
+    initStatStorage();
+  }
+
+  function initStatStorage() {
+    if (localStorage.getItem(prefix + 'gameWon') === null) {
+      localStorage.setItem(prefix + 'gameWon', 0);
+    }
+    if (localStorage.getItem(prefix + 'gameTotal') === null) {
+      localStorage.setItem(prefix + 'gameTotal', 0);
+    }
   }
 
   function getIntFromStorage(key) {
@@ -172,6 +183,8 @@ YTK.hangman = (function() {
       document.getElementById("end-speech-beth").innerHTML = 'Is this what ESport is? I think I\'m gifted';
       document.getElementById("lar-end-picture").className += ' won';
       document.getElementById("beth-end-picture").className += ' won';
+
+      localStorage.setItem(prefix + 'gameWon', getIntFromStorage('gameWon') + 1);
     }
     
     callback();
@@ -407,6 +420,8 @@ YTK.hangman = (function() {
 
     initStorage(charID);
 
+    localStorage.setItem(prefix + 'gameTotal', getIntFromStorage('gameTotal') + 1);
+
     hideCharContent(charID ? 1 : 0);
 
     buildDashes(localStorage.getItem(prefix + 'answer'));
@@ -446,11 +461,29 @@ YTK.hangman = (function() {
     bkgMusic.pause();
   }
 
+  function setWonTotal() {
+    var wonTotal = getIntFromStorage('gameWon') || 0;
+
+    document.getElementById('won-total').innerHTML = wonTotal;
+  }
+
+  function setGameTotal() {
+    var gamesTotal = getIntFromStorage('gameTotal') || 0;
+
+    document.getElementById('games-total').innerHTML = gamesTotal; 
+  }
+
+  function initPage() {
+    setWonTotal();
+    setGameTotal();
+    initBkgMusic()
+  }
+
   return {
+    initPage: initPage,
     initGame: initGame,
     pickChar: pickChar,
     playAgain: playAgain,
-    initBkgMusic: initBkgMusic,
     playMusic: playMusic,
     stopMusic: stopMusic,
     useSkill: useSkill
@@ -459,7 +492,7 @@ YTK.hangman = (function() {
 })();
 
 $(function() {
-  YTK.hangman.initBkgMusic();
+  YTK.hangman.initPage();
 });
 
 
