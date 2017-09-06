@@ -102,12 +102,22 @@ header {
 }
 
 .most-win {
-  margin-left: 10px;
+  background-color: purple;
+}
+.win-badge.three-win{
+  background-color: #5cb85c;
+}
+.win-badge.five-win{
+  background-color: #0275d8;
+}
+.win-badge.ten-win{
+  background-color: #f0ad4e;
 }
 
-.character .card-title .most-win {
+.character .card-title .badge {
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   font-size: 10px;
+  margin-left: 7px;
 }
 
 .card.character {

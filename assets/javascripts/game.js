@@ -222,6 +222,39 @@ YTK.hangman = (function() {
     callback();
   }
 
+function setBadge(element, winTotal) {
+  if (winTotal > 10) {
+    element.classList.remove('five-win');
+    element.classList.remove('three-win');
+    element.classList.remove('hidden');
+    element.innerHTML = '10+WIN';
+    element.className += ' ten-win';
+  }
+  else if (winTotal > 4) {
+    element.classList.remove('three-win');
+    element.classList.remove('hidden');
+    element.innerHTML = '5WIN'; 
+    element.className += ' five-win';
+  }
+  else if (winTotal > 2) {
+    element.classList.remove('hidden');
+    element.innerHTML = '3WIN'; 
+    element.className += ' three-win';
+  }
+}
+
+  function putWinBadge() {
+    var larWon = getIntFromStorage('larWon'),
+        bethWon = getIntFromStorage('bethWon'),
+        larBadge = document.getElementById('lar-win-badge'),
+        bethBadge = document.getElementById('beth-win-badge');
+
+console.log('asfd', larWon, bethWon);
+
+    setBadge(larBadge, larWon);
+    setBadge(bethBadge, bethWon);
+  }
+
   function putMVP() {
     var larWon = getIntFromStorage('larWon'),
         bethWon = getIntFromStorage('bethWon');
@@ -235,6 +268,11 @@ YTK.hangman = (function() {
     else if (bethWon > 0 && larWon > 0 && bethWon == larWon) {
       // draw game
     }
+  }
+
+  function putBadges() {
+    putWinBadge();
+    putMVP();
   }
 
   function guessCorrect(dashDivs) {
@@ -553,7 +591,7 @@ YTK.hangman = (function() {
     else {
       setWonTotal();
       setGameTotal();  
-      putMVP();
+      putBadges();
     }
   }
 
