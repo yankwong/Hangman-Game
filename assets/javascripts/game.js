@@ -5,6 +5,7 @@ YTK.hangman = (function() {
   var prefix = 'YTK_',
       wordsArray = [
         "iddqd",
+        "moana",
         "thanos",
         "rhaegal",
         "saitama",
@@ -13,12 +14,14 @@ YTK.hangman = (function() {
         "zzyzx road",
         "evangelion",
         "bruce wayne",
+        "apollo creed",
         "brendan eich",
         "trinity force",
         "mikasa ackerman",
       ],
       hintsArray = [
         "God mode in Doom",
+        "Disney movie",
         "Marvel super villian",
         "Name of a dragon",
         "Anime, OP bald guy",
@@ -27,6 +30,7 @@ YTK.hangman = (function() {
         "Weird road name",
         "Top anime from the 90s",
         "Batman",
+        "Rocky Balboa's rival",
         "Inventor of JS",
         "AD item from League",
         "Anime, titans slayer"
@@ -548,6 +552,8 @@ function setBadge(element, winTotal) {
     switchSections();
 
     usePassive(charID); //beth's passive
+    
+    playMusic();
   }
 
 
@@ -578,6 +584,7 @@ function setBadge(element, winTotal) {
 
   function initBkgMusic() {
     bkgMusic = new Audio('assets/music/13-map-1-world.mp3');
+    bkgMusic.volume = 0.1;
     bkgMusic.addEventListener('ended', function() {
       this.currentTime = 0;
       this.play();

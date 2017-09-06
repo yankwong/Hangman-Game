@@ -5,6 +5,7 @@
 body {
   padding-top: 60px;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
 }
 
@@ -37,6 +38,10 @@ header {
   justify-content: space-between;
 }
 
+#home-link {
+  font-size: 20px;
+}
+
 #btn-clear-stat {
   font-size: 10px;
 }
@@ -45,8 +50,8 @@ header {
   margin-bottom: 60px;
 }
 #landingSection {
-  /*margin-top: 40px;*/
   margin-top: 10px;
+  flex: 1;
 }
 
 #won-total, #games-total {
@@ -97,14 +102,14 @@ header {
     from { top: 4px; }
     to { top: 1px; }
 }
+
 .skill-up {
   color: #f0ad4e;
   animation-name: upDown;
   animation-duration: 0.6s;
+  animation-iteration-count: infinite;
   position: absolute;
   top: 4px;
-  
-  animation-iteration-count: infinite;
 }
 #lar-skill-up {
   left: 63px;
@@ -127,7 +132,11 @@ header {
 }
 .card.character {
   margin-bottom: 10px;
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #5a5f63;
 }
+
 @media(min-width: 992px) {
   .card.character {
     margin-bottom: 20px;
@@ -230,11 +239,19 @@ span.badge .fa {
 }
 .heart-bar {
   color: red;
-  font-size: 20px;
+  font-size: 22px;
 }
 #heart-6, #heart-7 {
   color: #FFD700;
 }
+
+.fa-heart {
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
 .hangman-main {
   min-height: 180px;
   margin: 10px auto;
