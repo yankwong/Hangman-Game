@@ -478,22 +478,23 @@ function setBadge(element, winTotal) {
     var answerArr = localStorage.getItem(prefix + 'answer').split(''),
         alphaArr = [];
 
-
     for (var i = 0; i < 26; i++) {
 
-      var $dashDiv = $('.dash.char-' + i);
+      var $btnDiv = $('.btn-'+alphabets[i], '.keyboard');
 
       if ($.inArray(alphabets[i], answerArr) === -1 && 
           $.inArray(alphabets[i], alphaArr) === -1 &&
-          !$dashDiv.prop("disabled")) {
+          !$btnDiv.prop("disabled")) {
 
         alphaArr.push(alphabets[i]);
 
         if (alphaArr.length == total) {
+
           return alphaArr;
         }
       }
     }
+
     return alphaArr;
   }
 
