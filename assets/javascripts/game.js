@@ -5,22 +5,28 @@ YTK.hangman = (function() {
   var prefix = 'YTK_',
       wordsArray = [
         "iddqd",
+        "thanos",
         "rhaegal",
         "saitama",
         "covfefe",
+        "yosemite",
         "zzyzx road",
         "evangelion",
+        "bruce wayne",
         "brendan eich",
         "trinity force",
         "mikasa ackerman",
       ],
       hintsArray = [
         "God mode in Doom",
+        "Marvel super villian",
         "Name of a dragon",
         "Anime, OP bald guy",
         "Trump's vocab",
+        "US National park",
         "Weird road name",
         "Top anime from the 90s",
+        "Batman",
         "Inventor of JS",
         "AD item from League",
         "Anime, titans slayer"
@@ -126,16 +132,6 @@ YTK.hangman = (function() {
       }
     }
     return uniqueArr;
-  }
-  function showLoader() {
-    var loader = document.getElementById('loader-overlay');
-
-    loader.className += ' active';
-  }
-  function removeLoader() {
-    var loader = document.getElementById('loader-overlay');
-
-    loader.classList.remove('active');
   }
 
   // 0: Lar, 1: beth
@@ -404,14 +400,34 @@ function setBadge(element, winTotal) {
     });
   }
 
+  function hasSuperSkill(charID) {
+    var charWonTotal = 0;
+
+    if (isLar(charID)) {
+      charWonTotal = getIntFromStorage('larWon');
+    }
+    else {
+      charWonTotal = getIntFromStorage('bethWon'); 
+    }
+
+    return charWonTotal > 4;
+  }
+
   function executeSkill(charID, skillID) {
 
     localStorage.setItem((prefix + 'skill'+skillID), 0)
 
     if (isLar(charID)) {
       if (skillID == 0) {
-        if (getRandomInt(0, 3) === 0) {
-          wonGame();
+        if (hasSuperSkill(charID)) {
+          if (getRandomInt(0, 9) < 3) {
+            wonGame();
+          }
+        }
+        else {
+          if (getRandomInt(0, 3) === 0) {
+            wonGame();
+          }
         }
       }
       else {
@@ -442,26 +458,43 @@ function setBadge(element, winTotal) {
         getOneCorrectAlphabet();
       }
       else {
-        var alpha = getWrongAlphabet();
+        var alphaArr;
 
-        $('.btn-'+alpha, '.keyboard').attr("disabled", true);        
+        if (hasSuperSkill(charID)) {
+          alphaArr = getWrongAlphabets(3);
+        }
+        else {
+          alphaArr = getWrongAlphabets(1);
+        }
+        
+        for (var i = 0; i < alphaArr.length; i++) {
+          $('.btn-'+alphaArr[i], '.keyboard').attr("disabled", true);  
+        }
       }
     }
   }
 
-  function getWrongAlphabet() {
-    var answerArr = localStorage.getItem(prefix + 'answer').split('');
+  function getWrongAlphabets(total) {
+    var answerArr = localStorage.getItem(prefix + 'answer').split(''),
+        alphaArr = [];
+
 
     for (var i = 0; i < 26; i++) {
 
       var $dashDiv = $('.dash.char-' + i);
 
-      if ($.inArray(alphabets[i], answerArr) === -1 && !$dashDiv.prop("disabled")) {
+      if ($.inArray(alphabets[i], answerArr) === -1 && 
+          $.inArray(alphabets[i], alphaArr) === -1 &&
+          !$dashDiv.prop("disabled")) {
 
-        return alphabets[i];
+        alphaArr.push(alphabets[i]);
+
+        if (alphaArr.length == total) {
+          return alphaArr;
+        }
       }
     }
-    return '';
+    return alphaArr;
   }
 
   function usePassive(charID) {
@@ -526,15 +559,21 @@ function setBadge(element, winTotal) {
       window.location.href = "index.html";
     }
   }
-    
-  // function goCharGame(charID) {
-  //   if (charID == 0 || charID == 1) {
-  //     window.location.href = "index.html?cid=" + charID;
-  //   }
-  //   else {
-  //     goHome();  
-  //   }
-  // }
+
+  function initSuperSkills() {
+
+    if (hasSuperSkill(0)) {
+      document.getElementById('lar-skill-up').classList.remove('hidden');
+      document.getElementById('lar-super-skill').innerHTML = '30% chance to instant win';
+      document.getElementById('lar-super-skill-info').innerHTML = '30% chance to instant win';
+    }
+
+    if (hasSuperSkill(1)) {
+      document.getElementById('beth-skill-up').classList.remove('hidden');
+      document.getElementById('beth-super-skill').innerHTML = 'Remove 3 unused alphabet';
+      document.getElementById('beth-super-skill-info').innerHTML = 'Remove 3 unused alphabet'; 
+    }
+  }
 
   function initBkgMusic() {
     bkgMusic = new Audio('assets/music/13-map-1-world.mp3');
@@ -582,6 +621,7 @@ function setBadge(element, winTotal) {
     var charID = getURLParam('cid', window.location.href);
 
     initBkgMusic();
+    initSuperSkills();
 
     if (charID != null && ensureCharID(charID)) {
       initGame(parseInt(charID));

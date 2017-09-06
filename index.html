@@ -42,10 +42,13 @@
 				    	<div class="row skill-brief alert-info">
 				    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-gift" aria-hidden="true"></i></div>
 
-				    		<div class="col-7 skill-name">Bribe</div>
+				    		<div class="col-7 skill-name">
+				    		Bribe
+				    		<i id="lar-skill-up" class="fa fa-angle-double-up skill-up hidden" aria-hidden="true"></i>
+				    		</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col-sm-12 skill-explain hidden-sm-down">25% chance to instant win</div>
+				    		<div id="lar-super-skill" class="col-sm-12 skill-explain hidden-sm-down">25% chance to instant win</div>
 			    		</div>
 				    </div>
 				    <div class="skills">
@@ -102,10 +105,12 @@
 						    	<div class="row skill-brief alert-info">
 						    		<div class="col-3 offset-2 skill-icon"><i class="fa fa-hand-spock-o" aria-hidden="true"></i></div>
 
-						    		<div class="col-7 skill-name">Nerd Sense</div>
+						    		<div class="col-7 skill-name">Nerd Sense
+						    		<i id="beth-skill-up" class="fa fa-angle-double-up skill-up hidden" aria-hidden="true"></i>
+						    		</div>
 						    	</div>
 						    	<div class="row">
-						    		<div class="col-sm-12 skill-explain hidden-sm-down">Remove 1 unused alphabet</div>
+						    		<div id="beth-super-skill" class="col-sm-12 skill-explain hidden-sm-down">Remove 1 unused alphabet</div>
 					    		</div>
 						    </div>
 						    <div class="skills">
@@ -144,7 +149,7 @@
 					<div class="card">
 						<div class="card-header"><i class="fa fa-info" aria-hidden="true"></i> About</div>
 						<div class="card-block">
-				  		<p class="card-text">Fun project from a long weekend. Hangman without any hanging. Image assets designed by <a href="//freepik.com" target="_blank">freepik.com</a></p>
+				  		<p class="card-text">Gain badges and skill up as you win games. Fun project from a long weekend. Hangman without any hanging. Image assets designed by <a href="//freepik.com" target="_blank">freepik.com</a></p>
 			  		</div>
 					</div>
 				</div>
@@ -212,7 +217,7 @@
 						<i class="fa fa-gift" aria-hidden="true"></i>
 						<span class="hidden-md-down skill-name">Bribe</span>
 					</div>
-						<span class="info">25% chance to instant win</span>
+						<span id="lar-super-skill-info" class="info">25% chance to instant win</span>
 					</button>
 				</div>
 				<div class="col-6 skill">
@@ -233,14 +238,11 @@
 					<button type="button" class="beth skill-2 btn btn-success" onclick="YTK.hangman.useSkill(this, 1);">
 						<i class="fa fa-hand-spock-o" aria-hidden="true"></i>
 						<span class="hidden-md-down skill-name">Nerd Sense</span>
-						<span class="info">Remove 1 unused character</span>
+						<span id="beth-super-skill-info" class="info">Remove 1 unused character</span>
 					</button>
 				</div>
 			</div>
 		</div>
-		<!-- <div id="loader-overlay">
-			<i class="fa fa-refresh fa-spin" aria-hidden="true">
-		</div> -->
 
 		<footer id="footer" class="footer">
       <div class="container">
@@ -266,8 +268,8 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Character Select</button>
-		        <button type="button" onclick="YTK.hangman.goHome(0);" class="btn btn-primary lar">Rematch</button>
-		        <button type="button" onclick="YTK.hangman.goHome(1);" class="btn btn-primary beth">Rematch</button>
+		        <button type="button" onclick="YTK.hangman.goHome(0);" class="btn btn-primary lar">Play Again</button>
+		        <button type="button" onclick="YTK.hangman.goHome(1);" class="btn btn-primary beth">Play Again</button>
 		      </div>
 		    </div>
 		  </div>
