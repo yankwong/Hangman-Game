@@ -230,15 +230,15 @@ function setBadge(element, winTotal) {
     element.innerHTML = '10+WIN';
     element.className += ' ten-win';
   }
-  else if (winTotal > 4) {
+  else if (winTotal > 5) {
     element.classList.remove('three-win');
     element.classList.remove('hidden');
-    element.innerHTML = '5WIN'; 
+    element.innerHTML = '5+WIN'; 
     element.className += ' five-win';
   }
-  else if (winTotal > 2) {
+  else if (winTotal > 3) {
     element.classList.remove('hidden');
-    element.innerHTML = '3WIN'; 
+    element.innerHTML = '3+WIN'; 
     element.className += ' three-win';
   }
 }
@@ -248,8 +248,6 @@ function setBadge(element, winTotal) {
         bethWon = getIntFromStorage('bethWon'),
         larBadge = document.getElementById('lar-win-badge'),
         bethBadge = document.getElementById('beth-win-badge');
-
-console.log('asfd', larWon, bethWon);
 
     setBadge(larBadge, larWon);
     setBadge(bethBadge, bethWon);

@@ -33,9 +33,7 @@
 							</div>
 							<div class="col-9">
 								<div class="char-data">
-									<h1 class="card-title">Larry 
-									<span id="lar-win-badge" class="badge win-badge hidden">3WIN</span><span id="lar-mvp" class="badge most-win badge-warning hidden">MVP</span></h1>
-									<p class="card-text desc">Rich friend with a gambling problem.</p>
+									<h1 class="card-title">Larry <span id="lar-win-badge" class="badge win-badge hidden">3WIN</span><span id="lar-mvp" class="badge most-win badge-warning hidden">MVP</span></h1><p class="card-text desc">Rich guy w. a gambling problem.</p>
 								</div>
 							</div>
 						</div>
@@ -86,7 +84,7 @@
 									<div class="col-9">
 										<div class="char-data">
 											<h1 class="card-title">Beth<span id="beth-win-badge" class="badge win-badge badge-success hidden">3WIN</span><span id="beth-mvp" class="badge most-win badge-warning hidden">MVP</span></h1>
-											<p class="card-text desc">The nerdy cat lady</p>
+											<p class="card-text desc">Typical nerdy cat lady</p>
 										</div>
 									</div>
 								</div>
@@ -210,25 +208,31 @@
 			<div class="row interaction">
 				<div class="col-6 skill">
 					<button type="button" class="lar skill-1 btn btn-success" onclick="YTK.hangman.useSkill(this, 0);">
+					<div class="name">
 						<i class="fa fa-gift" aria-hidden="true"></i>
+						<span class="hidden-md-down skill-name">Bribe</span>
+					</div>
 						<span class="info">25% chance to instant win</span>
 					</button>
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="lar skill-2 btn btn-success" onclick="YTK.hangman.useSkill(this, 1);">
 						<i class="fa fa-star-half-o" aria-hidden="true"></i>
+						<span class="hidden-md-down skill-name">Fifty-Fifty</span>
 						<span class="info">Get 2 words or lose 3 hearts</span>
 					</button>
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="beth skill-1 btn btn-success" onclick="YTK.hangman.useSkill(this, 0);">
 						<i class="fa fa-bath" aria-hidden="true"></i>
+						<span class="hidden-md-down skill-name">Shower Thought</span>
 						<span class="info">Fill in 1 character</span>
 					</button>
 				</div>
 				<div class="col-6 skill">
 					<button type="button" class="beth skill-2 btn btn-success" onclick="YTK.hangman.useSkill(this, 1);">
 						<i class="fa fa-hand-spock-o" aria-hidden="true"></i>
+						<span class="hidden-md-down skill-name">Nerd Sense</span>
 						<span class="info">Remove 1 unused character</span>
 					</button>
 				</div>
