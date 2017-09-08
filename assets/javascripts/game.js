@@ -17,6 +17,7 @@ YTK.hangman = (function() {
         "apollo creed",
         "brendan eich",
         "trinity force",
+        "gordon freeman",
         "mikasa ackerman",
       ],
       hintsArray = [
@@ -33,7 +34,8 @@ YTK.hangman = (function() {
         "Rocky Balboa's rival",
         "Inventor of JS",
         "AD item from League",
-        "Anime, titans slayer"
+        "The guy from Half Life",
+        "Titans slayer from an Anime"
       ],
       avatars = {
         "correct": [
@@ -69,7 +71,6 @@ YTK.hangman = (function() {
           "Greed is very good",
           "YOLO~"
         ]
-
       },
       bethSpeech = {
         "start": [
@@ -279,12 +280,29 @@ function setBadge(element, winTotal) {
   function getCharDivsByID(alphabetID) {
     return document.getElementsByClassName('char-' + alphabetID);
   }
-  function revealDashs(alphabetDivs, alphabetID){
-    for (var i = 0; i < alphabetDivs.length; i++) {
-      alphabetDivs[i].className += ' reveal';
-      alphabetDivs[i].innerHTML = alphabets[alphabetID].toUpperCase();
-    }
+
+  function animateDashs(alphabetDiv, callback) {
+    var $alphaDiv = $(alphabetDiv);
+
+    $alphaDiv.addClass('animate fa-spin');
+    $alphaDiv.animate({
+      opacity: 0.25
+    }, 300, function() {
+      callback();
+    });
   }
+
+  function revealDashs(alphabetDivs, alphabetID){
+    var $alphaDivs = $(alphabetDivs);
+
+      animateDashs($alphaDivs, function() {
+        $alphaDivs.removeClass('fa-spin animate');
+        $alphaDivs.addClass('reveal');
+        $alphaDivs.html(alphabets[alphabetID].toUpperCase());
+        $alphaDivs.css('opacity', 1);
+      });
+  }
+
   function loseHeart(heartsTot) {
     document.getElementById('heart-' + heartsTot).style.color = 'transparent';
     localStorage.setItem(prefix + 'hearts', (heartsTot - 1));
@@ -552,7 +570,7 @@ function setBadge(element, winTotal) {
     switchSections();
 
     usePassive(charID); //beth's passive
-    
+
     playMusic();
   }
 

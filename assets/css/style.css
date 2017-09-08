@@ -297,6 +297,11 @@ span.badge .fa {
   font-family: "FontAwesome";
   content: "\f155"; 
 }
+.hangman-main .dash.animate::before {
+  font-family: "FontAwesome";
+  content: "\f005";
+  color: #FFD700;
+}
 .hangman-main .dash.reveal::before {
   font-family: "FontAwesome";
   content: "";
