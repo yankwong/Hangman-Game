@@ -1,4 +1,3 @@
-// TODO: shinny (color-changing) badges
 // start game animation
 // FB share
 // README
