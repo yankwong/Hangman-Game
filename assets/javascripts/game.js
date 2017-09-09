@@ -103,7 +103,7 @@ YTK.hangman = (function() {
       alphabets,
       bkgMusic;
 
-  function setupShareBtn() {
+  function bindShareBtn() {
     $('.btn-fb-share').on('click', function() {
       window.location.href = "https://www.facebook.com/sharer/sharer.php?u=https://yankwong.github.io/Hangman-Game/";
     })
@@ -208,7 +208,7 @@ YTK.hangman = (function() {
         modalTitleDiv = document.getElementById('endGameTitle'),
         charID = getIntFromStorage('charID');
 
-    setupShareBtn();
+    bindShareBtn();
 
     $('#endGameModal').on('hidden.bs.modal', function() {
       goHome();
@@ -633,6 +633,32 @@ YTK.hangman = (function() {
     bkgMusic.pause();
   }
 
+  function bindMusicBtn() {
+    $('#btn-play-music').on('click', function() {
+      playMusic();
+    });
+
+    $('#btn-stop-music').on('click', function() {
+      stopMusic();
+    });
+  }
+
+  function bindInputBtn() {
+    var $inputBtns = $('.input-btn');
+
+    $.each($inputBtns, function(index, btn) {
+      $(btn).on('click', function() {
+        pickChar(this, index);  
+      })
+    });
+  }
+
+  function bindClearBtn() {
+    $('#btn-clear-stat').on('click', function() {
+      clearStats();
+    });
+  }
+
   function setWonTotal() {
     var wonTotal = getIntFromStorage('gameWon') || 0;
 
@@ -658,6 +684,9 @@ YTK.hangman = (function() {
 
     initBkgMusic();
     initSuperSkills();
+    bindMusicBtn();
+    bindClearBtn();
+    bindInputBtn();
 
     if (charID != null && ensureCharID(charID)) {
       initGame(parseInt(charID));
@@ -668,20 +697,16 @@ YTK.hangman = (function() {
       putBadges();
     }
   }
-
+  
   function getChar() {
     return getIntFromStorage('charID');
   }
 
   return {
-    initPage: initPage,
-    initGame: initGame,
-    pickChar: pickChar,
-    goHome: goHome,
-    playMusic: playMusic,
-    stopMusic: stopMusic,
-    useSkill: useSkill,
-    clearStats: clearStats
+    initPage  : initPage,
+    initGame  : initGame,
+    goHome    : goHome,
+    useSkill  : useSkill
   }
 
 })();

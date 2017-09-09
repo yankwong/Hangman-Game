@@ -22,8 +22,8 @@
 	      <span id="header-intro" class="intro">Pick a character</span>
 	      <a id="home-link" class=" hidden" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> HOME</a>
 	      <div id="header-ui" class="header-ui">
-		      <button id="btn-stop-music" class="btn btn-outline-danger" onclick="YTK.hangman.stopMusic();"><i class="fa fa-volume-off" aria-hidden="true"></i></button>
-		      <button id="btn-play-music" class="btn btn-outline-success" onclick="YTK.hangman.playMusic();"><i class="fa fa-volume-up" aria-hidden="true"></i></button>
+		      <button id="btn-stop-music" class="btn btn-outline-danger"><i class="fa fa-volume-off" aria-hidden="true"></i></button>
+		      <button id="btn-play-music" class="btn btn-outline-success"><i class="fa fa-volume-up" aria-hidden="true"></i></button>
 	      </div>
 	    </div>
 		</header>
@@ -140,7 +140,7 @@
 					<div class="card">
 						<div class="card-header">
 						<span><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats</span>
-						<button id="btn-clear-stat" class="btn btn-outline-danger" onclick="YTK.hangman.clearStats();">CLEAR</button>
+						<button id="btn-clear-stat" class="btn btn-outline-danger">CLEAR</button>
 						</div>
 					  <ul class="list-group list-group-flush">
 					    <li class="list-group-item"><strong>Total Wins: </strong><span id="won-total">0</span></li>
@@ -188,32 +188,32 @@
 				</div>
 			</div>
 			<div class="row keyboard">
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 0)" class="btn-a btn btn-info">A</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 1)" class="btn-b btn btn-info">B</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 2)" class="btn-c btn btn-info">C</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 3)" class="btn-d btn btn-info">D</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 4)" class="btn-e btn btn-info">E</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 5)" class="btn-f btn btn-info">F</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 6)" class="btn-g btn btn-info">G</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 7)" class="btn-h btn btn-info">H</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 8)" class="btn-i btn btn-info">I</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 9)" class="btn-j btn btn-info">J</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 10)" class="btn-k btn btn-info">K</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 11)" class="btn-l btn btn-info">L</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 12)" class="btn-m btn btn-info">M</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 13)" class="btn-n btn btn-info">N</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 14)" class="btn-o btn btn-info">O</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 15)" class="btn-p btn btn-info">P</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 16)" class="btn-q btn btn-info">Q</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 17)" class="btn-r btn btn-info">R</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 18)" class="btn-s btn btn-info">S</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 19)" class="btn-t btn btn-info">T</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 20)" class="btn-u btn btn-info">U</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 21)" class="btn-v btn btn-info">V</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 22)" class="btn-w btn btn-info">W</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 23)" class="btn-x btn btn-info">X</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 24)" class="btn-y btn btn-info">Y</button></div>
-				<div class="col-3"><button type="button" onclick="YTK.hangman.pickChar(this, 25)" class="btn-z btn btn-info">Z</button></div>
+				<div class="col-3"><button type="button" class="btn-a btn btn-info input-btn">A</button></div>
+				<div class="col-3"><button type="button" class="btn-b btn btn-info input-btn">B</button></div>
+				<div class="col-3"><button type="button" class="btn-c btn btn-info input-btn">C</button></div>
+				<div class="col-3"><button type="button" class="btn-d btn btn-info input-btn">D</button></div>
+				<div class="col-3"><button type="button" class="btn-e btn btn-info input-btn">E</button></div>
+				<div class="col-3"><button type="button" class="btn-f btn btn-info input-btn">F</button></div>
+				<div class="col-3"><button type="button" class="btn-g btn btn-info input-btn">G</button></div>
+				<div class="col-3"><button type="button" class="btn-h btn btn-info input-btn">H</button></div>
+				<div class="col-3"><button type="button" class="btn-i btn btn-info input-btn">I</button></div>
+				<div class="col-3"><button type="button" class="btn-j btn btn-info input-btn">J</button></div>
+				<div class="col-3"><button type="button" class="btn-k btn btn-info input-btn">K</button></div>
+				<div class="col-3"><button type="button" class="btn-l btn btn-info input-btn">L</button></div>
+				<div class="col-3"><button type="button" class="btn-m btn btn-info input-btn">M</button></div>
+				<div class="col-3"><button type="button" class="btn-n btn btn-info input-btn">N</button></div>
+				<div class="col-3"><button type="button" class="btn-o btn btn-info input-btn">O</button></div>
+				<div class="col-3"><button type="button" class="btn-p btn btn-info input-btn">P</button></div>
+				<div class="col-3"><button type="button" class="btn-q btn btn-info input-btn">Q</button></div>
+				<div class="col-3"><button type="button" class="btn-r btn btn-info input-btn">R</button></div>
+				<div class="col-3"><button type="button" class="btn-s btn btn-info input-btn">S</button></div>
+				<div class="col-3"><button type="button" class="btn-t btn btn-info input-btn">T</button></div>
+				<div class="col-3"><button type="button" class="btn-u btn btn-info input-btn">U</button></div>
+				<div class="col-3"><button type="button" class="btn-v btn btn-info input-btn">V</button></div>
+				<div class="col-3"><button type="button" class="btn-w btn btn-info input-btn">W</button></div>
+				<div class="col-3"><button type="button" class="btn-x btn btn-info input-btn">X</button></div>
+				<div class="col-3"><button type="button" class="btn-y btn btn-info input-btn">Y</button></div>
+				<div class="col-3"><button type="button" class="btn-z btn btn-info input-btn">Z</button></div>
 			</div>
 			
 			<div class="row interaction">
@@ -273,7 +273,6 @@
 		        <div id="end-speech-beth" class="ending-speech beth">This ain't over yet, not by a long shot</div>
 		      </div>
 		      <div class="modal-footer">
-		      	<!-- <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https://yankwong.github.io/Hangman-Game/"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</a> -->
 		        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Home</button> -->
 		        <button type="button" class="btn btn-fb-share btn-secondary"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</button>
 		        <button type="button" onclick="YTK.hangman.goHome(0);" class="btn btn-primary lar">Play Again</button>
