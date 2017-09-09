@@ -1,5 +1,4 @@
 // start game animation
-// FB share
 // README
 
 var YTK = YTK || {};
@@ -104,6 +103,11 @@ YTK.hangman = (function() {
       alphabets,
       bkgMusic;
 
+  function setupShareBtn() {
+    $('.btn-fb-share').on('click', function() {
+      window.location.href = "https://www.facebook.com/sharer/sharer.php?u=https://yankwong.github.io/Hangman-Game/";
+    })
+  }
   function getAlphabetArr() {
     var str = 'abcdefghijklmnopqrstuvwxyz';
     return str.split('');
@@ -203,6 +207,8 @@ YTK.hangman = (function() {
     var modalDiv = document.getElementById('endGameModal'),
         modalTitleDiv = document.getElementById('endGameTitle'),
         charID = getIntFromStorage('charID');
+
+    setupShareBtn();
 
     $('#endGameModal').on('hidden.bs.modal', function() {
       goHome();
