@@ -317,6 +317,7 @@ YTK.hangman = (function() {
     document.getElementById('heart-' + heartsTot).style.color = 'transparent';
     localStorage.setItem(prefix + 'hearts', (heartsTot - 1));
   }
+
   function incorrectActions() {
     var heartsTotal = getIntFromStorage('hearts');
 
@@ -410,20 +411,14 @@ YTK.hangman = (function() {
   function switchSections() {
 
     showSection('gameSection');
-
     hideSection('header-intro');
-
     hideSection('footer');
-
     hideSection('landingSection');
-
     showSection('home-link');
   }
 
   function isSkillAvailable(skillID) {
-    var skillCount = getIntFromStorage('skill' + skillID);
-
-    return skillCount === 1;
+    return getIntFromStorage('skill' + skillID) === 1;
   }
 
   function wonGame() {
