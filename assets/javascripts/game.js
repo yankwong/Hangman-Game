@@ -1,3 +1,9 @@
+// TODO: shinny (color-changing) badges
+// start game animation
+// og tags
+// FB share
+// README
+
 var YTK = YTK || {};
 
 YTK.hangman = (function() {
@@ -75,7 +81,7 @@ YTK.hangman = (function() {
       bethSpeech = {
         "start": [
           "Sweet, cat paws!",
-          "Yay I <3 cats",
+          "These paws <3",
           "Ohh Meow-nificen"
         ],
         "correct": [
@@ -111,8 +117,8 @@ YTK.hangman = (function() {
   function ensureCharID(id) {
     return id == 0 || id == 1;
   }
-  // solution from SO, obtain value of GET variable
-  // usage: getURLParam('q', 'hxxp://example.com/?q=abc')
+  
+  // from StackOverflow. usage: getURLParam('q', 'hxxp://example.com/?q=abc')
   function getURLParam( name, url ) {
     if (!url) url = location.href;
     name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -139,12 +145,11 @@ YTK.hangman = (function() {
     return uniqueArr;
   }
 
-  // 0: Lar, 1: beth
   function initStorage(charID) {
     var answer = getAnswer();
 
     localStorage.setItem(prefix + 'charID', charID);
-    localStorage.setItem(prefix + 'hearts', (charID ? 5 : 7));
+    localStorage.setItem(prefix + 'hearts', (isLar(charID) ? 7 : 5));
     localStorage.setItem(prefix + 'skill0', 1);
     localStorage.setItem(prefix + 'skill1', 1);
     localStorage.setItem(prefix + 'answer', answer);
@@ -223,26 +228,26 @@ YTK.hangman = (function() {
     callback();
   }
 
-function setBadge(element, winTotal) {
-  if (winTotal > 10) {
-    element.classList.remove('five-win');
-    element.classList.remove('three-win');
-    element.classList.remove('hidden');
-    element.innerHTML = '10+WIN';
-    element.className += ' ten-win';
+  function setBadge(element, winTotal) {
+    if (winTotal > 10) {
+      element.classList.remove('five-win');
+      element.classList.remove('three-win');
+      element.classList.remove('hidden');
+      element.innerHTML = '10+WIN';
+      element.className += ' ten-win';
+    }
+    else if (winTotal > 5) {
+      element.classList.remove('three-win');
+      element.classList.remove('hidden');
+      element.innerHTML = '5+WIN'; 
+      element.className += ' five-win';
+    }
+    else if (winTotal > 3) {
+      element.classList.remove('hidden');
+      element.innerHTML = '3+WIN'; 
+      element.className += ' three-win';
+    }
   }
-  else if (winTotal > 5) {
-    element.classList.remove('three-win');
-    element.classList.remove('hidden');
-    element.innerHTML = '5+WIN'; 
-    element.className += ' five-win';
-  }
-  else if (winTotal > 3) {
-    element.classList.remove('hidden');
-    element.innerHTML = '3+WIN'; 
-    element.className += ' three-win';
-  }
-}
 
   function putWinBadge() {
     var larWon = getIntFromStorage('larWon'),

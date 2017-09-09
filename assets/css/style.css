@@ -132,9 +132,13 @@ header {
 }
 .card.character {
   margin-bottom: 10px;
-  border-width: 2px;
+  border-width: 3px;
   border-style: dashed;
   border-color: #5a5f63;
+}
+.card.character:hover {
+  border-color: gold;
+  border-width: 3px;
 }
 
 @media(min-width: 992px) {
