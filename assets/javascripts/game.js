@@ -1,6 +1,5 @@
 // TODO: shinny (color-changing) badges
 // start game animation
-// og tags
 // FB share
 // README
 
@@ -9,40 +8,42 @@ var YTK = YTK || {};
 YTK.hangman = (function() {
 
   var prefix = 'YTK_',
-      wordsArray = [
-        "iddqd",
-        "moana",
-        "thanos",
-        "rhaegal",
-        "saitama",
-        "covfefe",
-        "yosemite",
-        "zzyzx road",
-        "evangelion",
-        "bruce wayne",
-        "apollo creed",
-        "brendan eich",
-        "trinity force",
-        "gordon freeman",
-        "mikasa ackerman",
-      ],
-      hintsArray = [
-        "God mode in Doom",
-        "Disney movie",
-        "Marvel super villian",
-        "Name of a dragon",
-        "Anime, OP bald guy",
-        "Trump's vocab",
-        "US National park",
-        "Weird road name",
-        "Top anime from the 90s",
-        "Batman",
-        "Rocky Balboa's rival",
-        "Inventor of JS",
-        "AD item from League",
-        "The guy from Half Life",
-        "Titans slayer from an Anime"
-      ],
+      wordObj = {
+        "words"  : [
+            "iddqd",
+            "moana",
+            "thanos",
+            "rhaegal",
+            "saitama",
+            "covfefe",
+            "yosemite",
+            "zzyzx road",
+            "evangelion",
+            "bruce wayne",
+            "apollo creed",
+            "brendan eich",
+            "trinity force",
+            "gordon freeman",
+            "mikasa ackerman",
+        ],
+        "hints" : [
+            "God mode in Doom",
+            "Disney movie",
+            "Marvel super villian",
+            "Name of a dragon",
+            "Anime, OP bald guy",
+            "Trump's vocab",
+            "US National park",
+            "Weird road name",
+            "Top anime from the 90s",
+            "Batman",
+            "Rocky Balboa's rival",
+            "Inventor of JS",
+            "AD item from League",
+            "The guy from Half Life",
+            "Titans slayer from an Anime"
+        ]
+      },
       avatars = {
         "correct": [
           " happy-1",
@@ -131,7 +132,7 @@ YTK.hangman = (function() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   function getAnswer(){
-    return wordsArray[getRandomInt(0, wordsArray.length-1)];
+    return wordObj["words"][getRandomInt(0, wordObj["words"].length-1)];
   }
   function getUniqueCharArray(answerStr){
     var answerArr = answerStr.split(''),
@@ -195,7 +196,6 @@ YTK.hangman = (function() {
         dashDiv.className += (charID ? '' : ' lar');
         rowDiv.appendChild(dashDiv);
       }
-
       hangmanMain.appendChild(rowDiv);
     }
   }
@@ -533,8 +533,8 @@ YTK.hangman = (function() {
     }
 
     answer  = localStorage.getItem(prefix + 'answer');
-    index   = wordsArray.indexOf(answer);
-    hintTxt = hintsArray[index];
+    index   = wordObj["words"].indexOf(answer);
+    hintTxt = wordObj["hints"][index];
 
     document.getElementById('tips-text').innerHTML = hintTxt;
 
